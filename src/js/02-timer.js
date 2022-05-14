@@ -57,9 +57,9 @@ function transformTimeValues() {
     const startTime = Date.now();
     const deltaTime = selectedTime - startTime;
     const transformTime = convertMs(deltaTime);
-    console.log(startTime)
-    console.log(deltaTime)
-    console.log(transformTime)
+    // console.log(startTime)
+    // console.log(deltaTime)
+    // console.log(transformTime)
 
     if (deltaTime >= 1000) {
        createTimerVision(transformTime) 
