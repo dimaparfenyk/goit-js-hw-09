@@ -1,8 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// подключить бтблиотеки
-// Создать объект интерактивных эл-тов
 
 let selectedTime = '';
 let intervalId = null;
@@ -15,7 +13,6 @@ const refs = {
     startTimerBtn: document.querySelector('[data-start]'),
 }
 
-// обработка кнопки
 refs.startTimerBtn.disabled = true;
 refs.startTimerBtn.addEventListener('click', onStartTimerBtnClick);
 
@@ -45,27 +42,25 @@ const options = {
       
      selectedTime = selectedDates[0].getTime();
 
-      if ( selectedTime <= options.defaultDate) {
-          Notify.failure('Please choose a date in the future');
+      if (selectedTime <= Date.now()) {
+    
           refs.startTimerBtn.disabled = true;
+          Notify.failure('Please choose a date in the future'); 
+          return;
       }
       refs.startTimerBtn.disabled = false;
-    },
-  
+    }, 
 };
+
 function transformTimeValues() {
     const startTime = Date.now();
     const deltaTime = selectedTime - startTime;
     const transformTime = convertMs(deltaTime);
-    // console.log(startTime)
-    // console.log(deltaTime)
-    // console.log(transformTime)
-
+   
     if (deltaTime >= 1000) {
        createTimerVision(transformTime) 
     } 
-    else (clearInterval(intervalId))
-   
+    else (clearInterval(intervalId)) 
 }
 
 flatpickr('#datetime-picker', options);
